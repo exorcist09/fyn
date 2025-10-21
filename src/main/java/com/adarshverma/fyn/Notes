@@ -1,0 +1,10 @@
+Logging (Sl4j)
+--> assume you have deployed your application to production and then any API is not working but its working in Development then what to do --> solution is done with Logging
+
+Logging is an essential aspect of application development that allows developers to monitor and troubleshoot their application
+
+Spring boot supports  logging with --> Logback(default framework with spring-boot), Log4j2( for asynchronous logging), JUL(Java Util logging -> built in java but it lacks advanced feature)
+
+Generally Logback is used in companies, as it is simple and flexible --> default configuration is embedded in your in application using logback
+
+if you want to customize logging then create your own logback spring.xml or logback.xml file in resource directory, When spring-boot detects this file in your project, it will use it instead of default configuration
