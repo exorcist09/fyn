@@ -12,7 +12,7 @@ public class EmailService {
     private final JavaMailSender mailSender;
 
     //    loading from application.properties
-    @Value("${spring.mail.properties,mail.smtp.from}")
+    @Value("${spring.mail.properties.mail.smtp.from}")
     private String fromEmail;
 
 

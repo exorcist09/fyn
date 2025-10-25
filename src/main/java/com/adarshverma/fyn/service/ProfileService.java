@@ -1,4 +1,3 @@
-// java
 package com.adarshverma.fyn.service;
 
 import com.adarshverma.fyn.dto.AuthDTO;
@@ -30,7 +29,7 @@ public class ProfileService {
     private final AuthenticationManager authenticationManager;
     private final JwtUtil jwtUtil;
 
-    @Value("${app.activation.url}")
+    @Value("${fyn.activation.url}")
     private String activationURL;
 
     public ProfileDTO registerProfile(ProfileDTO profileDTO) {
@@ -39,7 +38,7 @@ public class ProfileService {
         newProfile = profileRepository.save(newProfile);
         //send activation email
         String activationLink = activationURL+"/api/v1.0/activate?token=" + newProfile.getActivationToken();
-        String subject = "Activate your Money Manager account";
+        String subject = "Activate your Fyn Account";
         String body = "Click on the following link to activate your account: " + activationLink;
         emailService.sendEmail(newProfile.getEmail(), subject, body);
         return toDTO(newProfile);
