@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Builder
 public class IncomeDTO {
+
     private Long id;
     private String name;
     private String icon;
@@ -23,5 +24,5 @@ public class IncomeDTO {
     private LocalDate date;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
-
 }
+

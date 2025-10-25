@@ -14,3 +14,4 @@ public class AuthDTO {
     private String password;
     private String token;
 }
+

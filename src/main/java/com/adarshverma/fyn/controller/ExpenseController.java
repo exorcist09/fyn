@@ -4,7 +4,6 @@ import com.adarshverma.fyn.dto.ExpenseDTO;
 import com.adarshverma.fyn.service.ExpenseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,8 +13,8 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/expenses")
 public class ExpenseController {
-    private final ExpenseService expenseService;
 
+    private final ExpenseService expenseService;
 
     @PostMapping
     public ResponseEntity<ExpenseDTO> addExpense(@RequestBody ExpenseDTO dto) {
@@ -25,7 +24,7 @@ public class ExpenseController {
 
     @GetMapping
     public ResponseEntity<List<ExpenseDTO>> getExpenses() {
-        List<ExpenseDTO> expenses = expenseService.getCurrentMonthExpenseForCurrentUser();
+        List<ExpenseDTO> expenses = expenseService.getCurrentMonthExpensesForCurrentUser();
         return ResponseEntity.ok(expenses);
     }
 

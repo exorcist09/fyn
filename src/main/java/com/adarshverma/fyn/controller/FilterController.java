@@ -21,27 +21,27 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/filter")
 public class FilterController {
-    private ProfileService profileService;
-    private IncomeService incomeService;
-    private ExpenseService expenseService;
 
-    @PostMapping("/filter")
+    private final ExpenseService expenseService;
+    private final IncomeService incomeService;
+
+    @PostMapping
     public ResponseEntity<?> filterTransactions(@RequestBody FilterDTO filter) {
+        //preparing the data or validation
         LocalDate startDate = filter.getStartDate() != null ? filter.getStartDate() : LocalDate.MIN;
         LocalDate endDate = filter.getEndDate() != null ? filter.getEndDate() : LocalDate.now();
         String keyword = filter.getKeyword() != null ? filter.getKeyword() : "";
         String sortField = filter.getSortField() != null ? filter.getSortField() : "date";
         Sort.Direction direction = "desc".equalsIgnoreCase(filter.getSortOrder()) ? Sort.Direction.DESC : Sort.Direction.ASC;
         Sort sort = Sort.by(direction, sortField);
-//        checking if the filter is happeing in incomes or expense
-        if ("income".equals((filter.getType()))) {
+        if ("income".equals(filter.getType())) {
             List<IncomeDTO> incomes = incomeService.filterIncomes(startDate, endDate, keyword, sort);
             return ResponseEntity.ok(incomes);
-        } else if ("expense".equals(filter.getType())) {
+        } else if ("expense".equalsIgnoreCase(filter.getType())) {
             List<ExpenseDTO> expenses = expenseService.filterExpenses(startDate, endDate, keyword, sort);
             return ResponseEntity.ok(expenses);
         } else {
-            return ResponseEntity.badRequest().body("Invalid Type, Must be Income or Expense");
+            return ResponseEntity.badRequest().body("Invalid type. Must be 'income' or 'expense'");
         }
     }
 }

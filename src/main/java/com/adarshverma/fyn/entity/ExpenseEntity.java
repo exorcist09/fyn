@@ -13,8 +13,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
 @Entity
 @Table(name = "tbl_expenses")
@@ -42,8 +42,6 @@ public class ExpenseEntity {
     @JoinColumn(name = "profile_id", nullable = false)
     private ProfileEntity profile;
 
-
-    //    if user does not provide date, set today's date
     @PrePersist
     public void prePersist() {
         if (this.date == null) {

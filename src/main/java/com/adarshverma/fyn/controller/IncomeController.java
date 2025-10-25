@@ -1,8 +1,6 @@
 package com.adarshverma.fyn.controller;
 
-import com.adarshverma.fyn.dto.ExpenseDTO;
 import com.adarshverma.fyn.dto.IncomeDTO;
-import com.adarshverma.fyn.service.ExpenseService;
 import com.adarshverma.fyn.service.IncomeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -18,17 +16,16 @@ public class IncomeController {
 
     private final IncomeService incomeService;
 
-
     @PostMapping
-    public ResponseEntity<IncomeDTO> addIncome(@RequestBody IncomeDTO dto) {
+    public ResponseEntity<IncomeDTO> addExpense(@RequestBody IncomeDTO dto) {
         IncomeDTO saved = incomeService.addIncome(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(saved);
     }
 
     @GetMapping
     public ResponseEntity<List<IncomeDTO>> getExpenses() {
-        List<IncomeDTO> income = incomeService.getCurrentMonthIncomeForCurrentUser();
-        return ResponseEntity.ok(income);
+        List<IncomeDTO> expenses = incomeService.getCurrentMonthIncomesForCurrentUser();
+        return ResponseEntity.ok(expenses);
     }
 
     @DeleteMapping("/{id}")
@@ -37,3 +34,4 @@ public class IncomeController {
         return ResponseEntity.noContent().build();
     }
 }
+

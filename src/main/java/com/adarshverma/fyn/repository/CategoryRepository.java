@@ -8,15 +8,14 @@ import java.util.Optional;
 
 public interface CategoryRepository extends JpaRepository<CategoryEntity, Long> {
 
-    //    fetches all the categories for a given profile id from the database
+    //select * from tbl_categories where profile_id = ?1
     List<CategoryEntity> findByProfileId(Long profileId);
 
-    //    sele--ct * from tbl_category where id = ? and profile_id = ?; // ? means what you will enter there
-    Optional<CategoryEntity> findByIdAndProfileId(Long categoryId, Long profileId);
+    //select * from tbl_categories where id = ?1 and profile_id = ?2
+    Optional<CategoryEntity> findByIdAndProfileId(Long id, Long profileId);
 
-//    Select * from tbl_category where type = ? and profile_id = ?;
+    //select * from tbl_categories where type = ?1 and profile_id = ?2
     List<CategoryEntity> findByTypeAndProfileId(String type, Long profileId);
 
-//    as one user cannot create multiple categories with same name as we cannot use unique constraint here as profile_id will be different for different users and if you make name unique then no two users can have same category name which is not correct
     Boolean existsByNameAndProfileId(String name, Long profileId);
 }

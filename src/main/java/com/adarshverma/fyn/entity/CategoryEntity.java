@@ -24,15 +24,15 @@ public class CategoryEntity {
 
     private String name;
 
-
     @Column(updatable = false)
     @CreationTimestamp
     private LocalDateTime createdAt;
 
-
     @UpdateTimestamp
     private LocalDateTime updatedAt;
+
     private String type;
+
     private String icon;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -41,3 +41,4 @@ public class CategoryEntity {
 
 
 }
+

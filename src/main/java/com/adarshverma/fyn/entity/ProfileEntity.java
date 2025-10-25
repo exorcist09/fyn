@@ -8,13 +8,11 @@ import org.hibernate.annotations.UpdateTimestamp;
 import java.time.LocalDateTime;
 
 @Entity
-@Getter
-@Setter
+@Table(name = "tbl_profiles")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Table(name = "tbl_profiles")
 public class ProfileEntity {
 
     @Id
@@ -24,25 +22,21 @@ public class ProfileEntity {
     @Column(unique = true)
     private String email;
     private String password;
-    private String profileImage;
+    private String profileImageUrl;
     @Column(updatable = false)
     @CreationTimestamp
     private LocalDateTime createdAt;
     @UpdateTimestamp
     private LocalDateTime updatedAt;
-
     private Boolean isActive;
     private String activationToken;
-
-
-//    this is to check if the user is active or not and it should be done automatically for that we are using PrePersist annotaion
 
     @PrePersist
     public void prePersist() {
         if (this.isActive == null) {
             isActive = false;
         }
-
     }
 
 }
+

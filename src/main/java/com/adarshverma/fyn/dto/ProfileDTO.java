@@ -24,7 +24,7 @@ public class ProfileDTO {
     private String fullName;
     private String email;
     private String password;
-    private String profileImage;
+    private String profileImageUrl;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 }

@@ -14,8 +14,8 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/categories")
 public class CategoryController {
-    private final CategoryService categoryService;
 
+    private final CategoryService categoryService;
 
     @PostMapping
     public ResponseEntity<CategoryDTO> saveCategory(@RequestBody CategoryDTO categoryDTO) {
@@ -25,7 +25,7 @@ public class CategoryController {
 
     @GetMapping
     public ResponseEntity<List<CategoryDTO>> getCategories() {
-        List<CategoryDTO> categories = categoryService.getCategoriesforCurrentUser();
+        List<CategoryDTO> categories = categoryService.getCategoriesForCurrentUser();
         return ResponseEntity.ok(categories);
     }
 
@@ -35,11 +35,10 @@ public class CategoryController {
         return ResponseEntity.ok(list);
     }
 
-
     @PutMapping("/{categoryId}")
-    public ResponseEntity<CategoryDTO> updateCategory(@PathVariable Long categoryId, @RequestBody CategoryDTO categoryDTO) {
+    public ResponseEntity<CategoryDTO> updateCategory(@PathVariable Long categoryId,
+                                                      @RequestBody CategoryDTO categoryDTO) {
         CategoryDTO updatedCategory = categoryService.updateCategory(categoryId, categoryDTO);
         return ResponseEntity.ok(updatedCategory);
-
     }
 }

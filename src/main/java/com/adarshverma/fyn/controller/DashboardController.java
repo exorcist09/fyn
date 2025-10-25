@@ -14,8 +14,8 @@ import java.util.Map;
 @RequestMapping("/dashboard")
 @RequiredArgsConstructor
 public class DashboardController {
-    private final DashboardService dashboardService;
 
+    private final DashboardService dashboardService;
 
     @GetMapping
     public ResponseEntity<Map<String, Object>> getDashboardData() {

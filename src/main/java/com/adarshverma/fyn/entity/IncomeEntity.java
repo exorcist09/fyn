@@ -13,13 +13,12 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
 @Entity
 @Table(name = "tbl_incomes")
 public class IncomeEntity {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -35,19 +34,18 @@ public class IncomeEntity {
     private LocalDateTime updatedAt;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name= "category_id",nullable = false)
+    @JoinColumn(name = "category_id", nullable = false)
     private CategoryEntity category;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name= "profile_id",nullable = false)
+    @JoinColumn(name = "profile_id", nullable = false)
     private ProfileEntity profile;
 
-
-//    if user does not provide date, set today's date
     @PrePersist
     public void prePersist() {
-       if(this.date == null){
-           this.date = LocalDate.now();
-       }
+        if (this.date == null) {
+            this.date = LocalDate.now();
+        }
     }
 }
+
