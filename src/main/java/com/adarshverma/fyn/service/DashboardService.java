@@ -14,6 +14,8 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static java.util.stream.Stream.concat;
+
 @Service
 @RequiredArgsConstructor
 public class DashboardService {
@@ -70,3 +72,4 @@ public class DashboardService {
     }
 
 }
+
