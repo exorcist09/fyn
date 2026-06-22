@@ -33,14 +33,11 @@ public class ProfileService {
     private String activationURL;
 
     public ProfileDTO registerProfile(ProfileDTO profileDTO) {
+        if (profileRepository.findByEmail(profileDTO.getEmail()).isPresent()) {
+            throw new IllegalArgumentException("Email is already registered");
+        }
         ProfileEntity newProfile = toEntity(profileDTO);
-        newProfile.setActivationToken(UUID.randomUUID().toString());
         newProfile = profileRepository.save(newProfile);
-        //send activation email
-        String activationLink = activationURL+"/api/v1.0/activate?token=" + newProfile.getActivationToken();
-        String subject = "Activate your Fyn Account";
-        String body = "Click on the following link to activate your account: " + activationLink;
-        emailService.sendEmail(newProfile.getEmail(), subject, body);
         return toDTO(newProfile);
     }
 
@@ -67,21 +64,6 @@ public class ProfileService {
                 .build();
     }
 
-    public boolean activateProfile(String activationToken) {
-        return profileRepository.findByActivationToken(activationToken)
-                .map(profile -> {
-                    profile.setIsActive(true);
-                    profileRepository.save(profile);
-                    return true;
-                })
-                .orElse(false);
-    }
-
-    public boolean isAccountActive(String email) {
-        return profileRepository.findByEmail(email)
-                .map(ProfileEntity::getIsActive)
-                .orElse(false);
-    }
 
     public ProfileEntity getCurrentProfile() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
