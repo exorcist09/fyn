@@ -1,4 +1,4 @@
-# FYN – Money Manager Application(Backend Repository)
+# FYN – Backend Repository
 
 FYN is a full-stack Money Manager application that helps users track their income, expenses, and overall financial health in a secure and intuitive interface.
 
