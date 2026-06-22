@@ -17,9 +17,15 @@ public class ProfileController {
     private final ProfileService profileService;
 
     @PostMapping("/register")
-    public ResponseEntity<ProfileDTO> registerProfile(@RequestBody ProfileDTO profileDTO) {
-        ProfileDTO registeredProfile = profileService.registerProfile(profileDTO);
-        return ResponseEntity.status(HttpStatus.CREATED).body(registeredProfile);
+    public ResponseEntity<?> registerProfile(@RequestBody ProfileDTO profileDTO) {
+        try {
+            ProfileDTO registeredProfile = profileService.registerProfile(profileDTO);
+            return ResponseEntity.status(HttpStatus.CREATED).body(registeredProfile);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Map.of(
+                    "message", e.getMessage() != null ? e.getMessage() : "An unexpected error occurred"
+            ));
+        }
     }
 
     @GetMapping("/activate")
