@@ -1,4 +1,5 @@
 # FYN – Backend Repository
+### Fyn - Frontend Respository: [Frontend_Github_Link](https://github.com/exorcist09/fyn-frontend.git)
 
 FYN is a full-stack Money Manager application that helps users track their income, expenses, and overall financial health in a secure and intuitive interface.
 
@@ -19,7 +20,7 @@ FYN is a full-stack Money Manager application that helps users track their incom
 0. **Combination**
 
 -  The applicaiton is in two differnt repository you need to clone both or Zip download both and then merge them and proceed
-- Fyn-MoneyManager Frontend: [Frontend_Github_Link](https://github.com/exorcist09/fyn-frontend.git)
+
 
 1. **Clone the repository**
 ```bash
